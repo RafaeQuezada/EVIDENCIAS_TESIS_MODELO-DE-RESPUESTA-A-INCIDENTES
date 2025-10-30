@@ -145,68 +145,17 @@ Para integrar un nuevo agente al servidor Wazuh Manager:
 
 ---
 
-## SECCIÓN 2. Herramientas complementarias utilizadas
+## SECCIÓN 2. Sistema de gestión de tickets
 
-El entorno de pruebas incorporó herramientas de diagnóstico, monitoreo, análisis y simulación de incidentes de seguridad informática.
-
-### 2.1 Wazuh Agent (Windows 10/11)
-
-Instalado en el equipo cliente simulado.  
-Configurado para enviar logs JSON desde:
-
-`C:\Program Files (x86)\ossec-agent\logs\`
-
-Archivos monitoreados:
-- axiscloud.log (accesos no autorizados)  
-- antimalware.log (detección de malware)  
-- pbx_status.log (disponibilidad del servidor PBX)  
-- mail_activity.log (envíos de correos no cifrados)  
-- phishing_test.log (simulaciones de phishing)  
-- usb_activity.log (conexión de dispositivos externos)
-
-Los eventos fueron enviados automáticamente al servidor Wazuh Manager para su correlación y generación de alertas.
-
-### 2.2 Wireshark
-
-Herramienta de captura y análisis de tráfico de red.  
-Filtros utilizados:
-```
-ip.src == 192.168.162.*
-tcp.port == 80
-tls.handshake
-```
-Permite validar cifrado, detectar conexiones sospechosas y analizar el comportamiento de la red.
-
-### 2.3 Nmap
-
-Utilizado para auditorías de servicios activos y detección de vulnerabilidades.  
-Comando aplicado:
-```
-nmap -T4 -A -v 192.168.162.140
-```
-Identifica puertos abiertos, servicios asociados y certificados activos en la red.
-
-### 2.4 Autopsy
-
-Herramienta de análisis forense digital utilizada para examinar imágenes de disco, archivos y registros de evidencia.  
-Verificación de integridad mediante funciones hash (SHA-256).  
-Evidencias preservadas bajo cadena de custodia.
-
----
-
----
-
-## SECCIÓN 3. Sistema de gestión de tickets
-
-### 3.1 Descripción general
+### 2.1 Descripción general
 
 Como parte del modelo MIRI, se desarrolló una aplicación web local denominada **Sistema de Gestión de Incidentes de Seguridad**, programada en **HTML, JavaScript y Bootstrap 5**, que permite registrar y controlar el ciclo de vida de los incidentes detectados durante las simulaciones.
 
-### 3.2 Objetivo
+### 2.2 Objetivo
 
 Proporcionar una interfaz ligera y funcional para documentar cada incidente, asignar responsables y dar seguimiento a su resolución, simulando el flujo institucional de respuesta a incidentes de seguridad.
 
-### 3.3 Características técnicas
+### 2.3 Características técnicas
 
 - Tipo de aplicación: Local (sin servidor).  
 - Persistencia: localStorage del navegador.  
@@ -216,7 +165,7 @@ Proporcionar una interfaz ligera y funcional para documentar cada incidente, asi
   - Opción para actualizar o eliminar registros.  
 - Estados disponibles: “Abierto”, “En análisis” y “Resuelto”.
 
-### 3.4 Fragmento representativo del código
+### 2.4 Fragmento representativo del código
 
 Formulario HTML:
 ```
@@ -266,7 +215,7 @@ ticketForm.addEventListener('submit', e => {
 });
 ```
 
-### 3.5 Propósito del sistema
+### 2.5 Propósito del sistema
 
 El sistema de tickets permite simular el proceso institucional de registro, análisis y cierre de incidentes de seguridad.  
 Cada registro representa un evento detectado por Wazuh, permitiendo mantener trazabilidad documental y control del flujo de atención durante la validación del modelo MIRI.
