@@ -192,13 +192,7 @@ Herramienta de análisis forense digital utilizada para examinar imágenes de di
 Verificación de integridad mediante funciones hash (SHA-256).  
 Evidencias preservadas bajo cadena de custodia.
 
-### 2.5 HashCalc / OpenSSL
-
-Herramientas utilizadas para verificar integridad de evidencias digitales.  
-Ejemplo:
-```
-openssl dgst -sha256 archivo.img
-```
+---
 
 ---
 
